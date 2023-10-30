@@ -1,26 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Admin, Resource} from "react-admin";
+import {dataProvider} from "./dataProvider";
+import InfoIcon from '@mui/icons-material/Info';
+import {InformationCreate, InformationEdit, InformationList, InformationShow} from "./components/information";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Admin dataProvider={dataProvider}>
+                <Resource name='information' list={InformationList} edit={InformationEdit} show={InformationShow}
+                          create={InformationCreate} icon={InfoIcon}/>
+            </Admin>
+        </div>
+    );
 }
 
 export default App;
