@@ -1,10 +1,11 @@
 import {
+    ArrayInput,
     Create,
     DateField,
     Edit,
-    FunctionField,
+    FunctionField, ImageField,
     List, NumberInput, SelectInput, Show,
-    SimpleForm, SimpleList, SimpleShowLayout,
+    SimpleForm, SimpleFormIterator, SimpleList, SimpleShowLayout,
     TextField,
     TextInput, UrlField,
     useRecordContext
@@ -52,6 +53,7 @@ export const LocationShow = () => (
             <UrlField label="Adres strony" source="website_url"/>
             <TextField label="Szerokość geograficzna" source="coordinate.latitude"/>
             <TextField label="Długość geograficzna" source="coordinate.longitude"/>
+            <ImageField label="Zdjęcia" source="photos" src="url"/>
             <DateField label="Data ostatniej modyfikacji" source="last_modified_date" showTime={true}/>
         </SimpleShowLayout>
     </Show>
@@ -70,6 +72,11 @@ export const LocationEdit = () =>
                 <TextInput label="Adres strony" source="website_url" name="website_url"/>
                 <NumberInput label="Szerokość geograficzna" source="coordinate.latitude" name="latitude"/>
                 <NumberInput label="Długość geograficzna" source="coordinate.longitude" name="longitude"/>
+                <ArrayInput label="Zdjęcia" name="photos" source="photos">
+                    <SimpleFormIterator inline>
+                        <TextInput source="url" helperText={false}/>
+                    </SimpleFormIterator>
+                </ArrayInput>
             </SimpleForm>
         </Edit>
     )
@@ -86,6 +93,11 @@ export const LocationCreate = () => (
             <TextInput label="Adres strony" source="website_url" name="website_url"/>
             <NumberInput label="Szerokość geograficzna" source="coordinate.latitude" name="latitude"/>
             <NumberInput label="Długość geograficzna" source="coordinate.longitude" name="longitude"/>
+            <ArrayInput label="Zdjęcia" name="photos" source="photos">
+                <SimpleFormIterator inline>
+                    <TextInput source="url" helperText={false}/>
+                </SimpleFormIterator>
+            </ArrayInput>
         </SimpleForm>
     </Create>
 )

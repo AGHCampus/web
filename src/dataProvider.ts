@@ -26,7 +26,11 @@ export const dataProvider = localStorageDataProvider({
                 opening_hours: '8:00-17:00',
                 phone_number: '126174545',
                 timestamp: '2023-10-21 22:27:50.000000',
-                website_url: 'http://www.klubstudio.pl/'
+                website_url: 'http://www.klubstudio.pl/',
+                "photos": [
+                    {"url": 'https://www.klubstudio.pl/images/about-plyta.jpg'},
+                    {"url": 'https://www.czestobud.com/wp-content/uploads/2022/05/Rectangle-65.jpg'}
+                ]
             }
         ]
     }
