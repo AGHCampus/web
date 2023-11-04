@@ -1,9 +1,9 @@
-import {Card, CardHeader} from "@mui/material";
+import { Card, CardHeader } from "@mui/material";
 
 const Dashboard = () => (
-    <Card>
-        <CardHeader title="Witaj w panelu administracyjnym"/>
-    </Card>
-)
+  <Card>
+    <CardHeader title="Witaj w panelu administracyjnym" />
+  </Card>
+);
 
-export default Dashboard
+export default Dashboard;
