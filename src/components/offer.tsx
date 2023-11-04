@@ -11,10 +11,10 @@ import {
     useRecordContext
 } from "react-admin";
 
-export const EventList = () => (
-    <List title="Wydarzenia">
+export const OfferList = () => (
+    <List title="Oferty">
         <SimpleList
-            primaryText={(record) => record.title}
+            primaryText={(record) => record.description}
             secondaryText={
                 <ReferenceField reference="location" source="location_id" link="show"/>
             }
@@ -26,17 +26,16 @@ export const EventList = () => (
     </List>
 )
 
-const EventTitle = () => {
+const OfferTitle = () => {
     const record = useRecordContext()
-    return <span>Wydarzenie {record ? `"${record.title}"` : ''}</span>
+    return <span>Oferta {record ? `"${record.description}"` : ''}</span>
 }
 
-export const EventShow = () => (
-    <Show title={<EventTitle/>}>
+export const OfferShow = () => (
+    <Show title={<OfferTitle/>}>
         <SimpleShowLayout>
-            <TextField label="Nazwa" source="title"/>
-            <ReferenceField reference="location" source="location_id" link="show"/>
             <TextField label="Opis" source="description"/>
+            <ReferenceField reference="location" source="location_id" link="show"/>
             <DateField label="Data rozpoczęcia" source="start_date" showTime={true}/>
             <DateField label="Data zakończenia" source="end_date" showTime={true}/>
             <UrlField label="Adres strony" source="website_url"/>
@@ -45,14 +44,13 @@ export const EventShow = () => (
     </Show>
 )
 
-export const EventEdit = () => (
-    <Edit title={<EventTitle/>}>
+export const OfferEdit = () => (
+    <Edit title={<OfferTitle/>}>
         <SimpleForm>
-            <TextInput label="Nazwa" source="title" name="title"/>
+            <TextInput label="Opis" source="description" name="description" multiline/>
             <ReferenceInput source="location_id" reference="location">
                 <SelectInput label="Lokalizacja"/>
             </ReferenceInput>
-            <TextInput label="Opis" source="description" name="description" multiline/>
             <DateTimeInput label="Data rozpoczęcia" name="start_date" source="start_date"/>
             <DateTimeInput label="Data zakończenia" name="end_date" source="end_date"/>
             <TextInput label="Url strony" source="website_url" name="website_url"/>
@@ -61,14 +59,13 @@ export const EventEdit = () => (
     </Edit>
 )
 
-export const EventCreate = () => (
+export const OfferCreate = () => (
     <Create>
         <SimpleForm>
-            <TextInput label="Nazwa" source="title" name="title"/>
+            <TextInput label="Opis" source="description" name="description" multiline/>
             <ReferenceInput source="location_id" reference="location">
                 <SelectInput label="Lokalizacja"/>
             </ReferenceInput>
-            <TextInput label="Opis" source="description" name="description" multiline/>
             <DateTimeInput label="Data rozpoczęcia" name="start_date" source="start_date"/>
             <DateTimeInput label="Data zakończenia" name="end_date" source="end_date"/>
             <TextInput label="Url strony" source="website_url" name="website_url"/>

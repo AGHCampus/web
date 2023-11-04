@@ -10,6 +10,7 @@ import {i18nProvider} from "./i18nProvider";
 import {authProvider} from "./authProvider";
 import Dashboard from "./components/Dashboard";
 import {EventCreate, EventEdit, EventList, EventShow} from "./components/event";
+import {OfferCreate, OfferEdit, OfferList, OfferShow} from "./components/offer";
 
 function App() {
     return (
@@ -23,7 +24,8 @@ function App() {
                           recordRepresentation={record => record.name}/>
                 <Resource name='event' list={EventList} show={EventShow} edit={EventEdit} create={EventCreate}
                           icon={EventIcon} options={{label: 'Wydarzenia'}}/>
-                <Resource name='offer' list={ListGuesser} icon={LocalOfferIcon} options={{label: 'Oferty'}}/>
+                <Resource name='offer' list={OfferList} show={OfferShow} edit={OfferEdit} create={OfferCreate}
+                          icon={LocalOfferIcon} options={{label: 'Oferty'}}/>
             </Admin>
         </div>
     );

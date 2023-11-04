@@ -77,6 +77,28 @@ export const dataProvider = localStorageDataProvider({
                 title: 'Dzień RYBY',
                 website_url: 'https://www.orybach.pl/'
             }
+        ],
+        offer: [
+            {
+                id: 1,
+                description: 'Wszystko -20%',
+                end_date: '2023-06-26 00:00:00.000000',
+                image_url: 'https://phavi.umcs.pl/ph/r,1024,800/multimedia/2021/0927/110053-wydzialowka.jpeg',
+                location_id: 3,
+                start_date: '2023-05-30 00:00:00.000000',
+                timestamp: '2023-06-26 03:11:14.000000',
+                website_url: 'https://www.google.com'
+            },
+            {
+                id: 2,
+                description: 'Uramaki -10zł',
+                end_date: '2023-11-22 11:17:54.000000',
+                image_url: 'https://wedkarz.pl/wp-content/uploads/2021/11/z-sluchryb-1.jpg',
+                location_id: 14,
+                start_date: '2023-10-22 11:18:12.000000',
+                timestamp: '2023-10-22 11:18:17.000000',
+                website_url: 'https://www.orybach.pl/'
+            }
         ]
     }
 })
