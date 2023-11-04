@@ -1,13 +1,15 @@
-import React from 'react';
-import {Admin, Resource, radiantLightTheme, radiantDarkTheme} from "react-admin";
+import {Admin, Resource, radiantLightTheme, radiantDarkTheme, ListGuesser} from "react-admin";
 import {dataProvider} from "./dataProvider";
 import InfoIcon from '@mui/icons-material/Info';
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import EventIcon from '@mui/icons-material/Event';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import {InformationCreate, InformationEdit, InformationList, InformationShow} from "./components/information";
 import {LocationCreate, LocationEdit, LocationList, LocationShow} from "./components/location";
 import {i18nProvider} from "./i18nProvider";
 import {authProvider} from "./authProvider";
 import Dashboard from "./components/Dashboard";
+import {EventCreate, EventEdit, EventList, EventShow} from "./components/event";
 
 function App() {
     return (
@@ -17,7 +19,11 @@ function App() {
                 <Resource name='information' list={InformationList} edit={InformationEdit} show={InformationShow}
                           create={InformationCreate} icon={InfoIcon} options={{label: 'Ogłoszenia'}}/>
                 <Resource name='location' list={LocationList} show={LocationShow} edit={LocationEdit}
-                          create={LocationCreate} icon={CorporateFareIcon} options={{label: 'Lokalizacje'}}/>
+                          create={LocationCreate} icon={CorporateFareIcon} options={{label: 'Lokalizacje'}}
+                          recordRepresentation={record => record.name}/>
+                <Resource name='event' list={EventList} show={EventShow} edit={EventEdit} create={EventCreate}
+                          icon={EventIcon} options={{label: 'Wydarzenia'}}/>
+                <Resource name='offer' list={ListGuesser} icon={LocalOfferIcon} options={{label: 'Oferty'}}/>
             </Admin>
         </div>
     );

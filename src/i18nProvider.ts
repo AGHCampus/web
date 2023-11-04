@@ -147,6 +147,10 @@ const polishMessages: TranslationMessages = {
             oneOf: "Musi być jednym z: %{options}",
             regex: "Musi pasować do konkretnego formatu (regexp): %{pattern}",
         },
+        // @ts-ignore
+        configurable: {
+            customize: 'Customize',
+        }
     },
 };
 
