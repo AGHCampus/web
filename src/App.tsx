@@ -4,7 +4,7 @@ import {
   radiantLightTheme,
   Resource,
 } from "react-admin";
-import { dataProvider } from "./dataProvider";
+import dataProvider from "./data_provider/dataProvider";
 import InfoIcon from "@mui/icons-material/Info";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import EventIcon from "@mui/icons-material/Event";
