@@ -1,11 +1,15 @@
 import { GetListResult } from "ra-core/dist/cjs/types";
 import {
   CreateParams,
-  CreateResult, DeleteParams, DeleteResult,
+  CreateResult,
+  DeleteParams,
+  DeleteResult,
   fetchUtils,
   GetOneParams,
   GetOneResult,
-  RaRecord, UpdateParams, UpdateResult
+  RaRecord,
+  UpdateParams,
+  UpdateResult,
 } from "react-admin";
 
 export const informationGetList = async (
@@ -52,7 +56,7 @@ export const informationUpdate = async (
     body: JSON.stringify(params.data),
   });
   return { data: json };
-}
+};
 
 export const informationDelete = async (
   httpClient: typeof fetchUtils.fetchJson,
@@ -63,4 +67,4 @@ export const informationDelete = async (
     method: "DELETE",
   });
   return { data: json };
-}
+};

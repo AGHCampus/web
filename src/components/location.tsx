@@ -1,7 +1,6 @@
 import {
   ArrayInput,
   Create,
-  DateField,
   Edit,
   FunctionField,
   ImageField,
@@ -34,7 +33,7 @@ const CATEGORIES_LIST = [
 ];
 
 export const LocationList = () => (
-  <List title="Lokalizacje">
+  <List title="Lokalizacje" pagination={false}>
     <SimpleList
       primaryText={(record) => record.name}
       secondaryText={(record) => CATEGORIES[record.category]}
@@ -60,17 +59,12 @@ export const LocationShow = () => (
       />
       <TextField label="Opis" source="description" />
       <TextField label="Adres" source="address" />
-      <TextField label="Godziny otwarcia" source="opening_hours" />
-      <TextField label="Numer telefonu" source="phone_number" />
-      <UrlField label="Adres strony" source="website_url" />
+      <TextField label="Godziny otwarcia" source="openingHours" />
+      <TextField label="Numer telefonu" source="phoneNumber" />
+      <UrlField label="Adres strony" source="websiteUrl" />
       <TextField label="Szerokość geograficzna" source="coordinate.latitude" />
       <TextField label="Długość geograficzna" source="coordinate.longitude" />
       <ImageField label="Zdjęcia" source="photos" src="url" />
-      <DateField
-        label="Data ostatniej modyfikacji"
-        source="last_modified_date"
-        showTime={true}
-      />
     </SimpleShowLayout>
   </Show>
 );
@@ -94,15 +88,15 @@ export const LocationEdit = () => (
       <TextInput label="Adres" source="address" name="address" multiline />
       <TextInput
         label="Godziny otwarcia"
-        source="opening_hours"
-        name="opening_hours"
+        source="openingHours"
+        name="openingHours"
       />
       <TextInput
         label="Numer telefonu"
-        source="phone_number"
-        name="phone_number"
+        source="phoneNumber"
+        name="phoneNumber"
       />
-      <TextInput label="Adres strony" source="website_url" name="website_url" />
+      <TextInput label="Adres strony" source="websiteUrl" name="websiteUrl" />
       <NumberInput
         label="Szerokość geograficzna"
         source="coordinate.latitude"
@@ -141,15 +135,15 @@ export const LocationCreate = () => (
       <TextInput label="Adres" source="address" name="address" multiline />
       <TextInput
         label="Godziny otwarcia"
-        source="opening_hours"
-        name="opening_hours"
+        source="openingHours"
+        name="openingHours"
       />
       <TextInput
         label="Numer telefonu"
-        source="phone_number"
-        name="phone_number"
+        source="phoneNumber"
+        name="phoneNumber"
       />
-      <TextInput label="Adres strony" source="website_url" name="website_url" />
+      <TextInput label="Adres strony" source="websiteUrl" name="websiteUrl" />
       <NumberInput
         label="Szerokość geograficzna"
         source="coordinate.latitude"

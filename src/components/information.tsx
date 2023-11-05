@@ -1,6 +1,5 @@
 import {
   Create,
-  DateField,
   Edit,
   List,
   Show,
@@ -28,7 +27,6 @@ export const InformationShow = () => (
     <SimpleShowLayout>
       <TextField label="Tytuł" source="title" />
       <TextField label="Treść" source="content" />
-      <DateField label="Data utworzenia" source="timestamp" showTime={true} />
     </SimpleShowLayout>
   </Show>
 );

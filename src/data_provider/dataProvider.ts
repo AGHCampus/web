@@ -6,6 +6,7 @@ import {
   informationGetOne,
   informationUpdate,
 } from "./informationProvider";
+import { locationCreate, locationDelete, locationGetList, locationGetOne, locationUpdate } from "./locationProvider";
 
 const apiUrl = "http://localhost:8080";
 const httpClient = fetchUtils.fetchJson;
@@ -17,6 +18,8 @@ const AGHCampusDataProvider: DataProvider = {
     switch (resource) {
       case "information":
         return informationGetList(httpClient, apiUrl);
+      case "location":
+        return locationGetList(httpClient, apiUrl);
     }
   },
   // @ts-ignore
@@ -24,6 +27,8 @@ const AGHCampusDataProvider: DataProvider = {
     switch (resource) {
       case "information":
         return informationGetOne(httpClient, apiUrl, params);
+      case "location":
+        return locationGetOne(httpClient, apiUrl, params);
     }
   },
   // @ts-ignore
@@ -35,6 +40,8 @@ const AGHCampusDataProvider: DataProvider = {
     switch (resource) {
       case "information":
         return informationCreate(httpClient, apiUrl, params);
+      case "location":
+        return locationCreate(httpClient, apiUrl, params)
     }
   },
   // @ts-ignore
@@ -42,6 +49,8 @@ const AGHCampusDataProvider: DataProvider = {
     switch (resource) {
       case "information":
         return informationUpdate(httpClient, apiUrl, params);
+      case "location":
+        return locationUpdate(httpClient, apiUrl, params);
     }
   },
   // @ts-ignore
@@ -51,6 +60,8 @@ const AGHCampusDataProvider: DataProvider = {
     switch (resource) {
       case "information":
         return informationDelete(httpClient, apiUrl, params);
+      case "location":
+        return locationDelete(httpClient, apiUrl, params);
     }
   },
   // @ts-ignore
