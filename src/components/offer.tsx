@@ -23,11 +23,11 @@ export const OfferList = () => (
     <SimpleList
       primaryText={(record) => record.description}
       secondaryText={
-        <ReferenceField reference="location" source="location_id" link="show" />
+        <ReferenceField reference="locations" source="locationId" link="show" />
       }
       tertiaryText={(record) =>
-        `${new Date(record.start_date).toLocaleDateString()} - ${new Date(
-          record.end_date,
+        `${new Date(record.startDate).toLocaleDateString()} - ${new Date(
+          record.endDate,
         ).toLocaleDateString()}`
       }
       linkType="show"
@@ -44,11 +44,11 @@ export const OfferShow = () => (
   <Show title={<OfferTitle />}>
     <SimpleShowLayout>
       <TextField label="Opis" source="description" />
-      <ReferenceField reference="location" source="location_id" link="show" />
-      <DateField label="Data rozpoczęcia" source="start_date" showTime={true} />
-      <DateField label="Data zakończenia" source="end_date" showTime={true} />
-      <UrlField label="Adres strony" source="website_url" />
-      <ImageField label="Zdjęcie" source="image_url" />
+      <ReferenceField reference="locations" source="locationId" link="show" />
+      <DateField label="Data rozpoczęcia" source="startDate" showTime={true} />
+      <DateField label="Data zakończenia" source="endDate" showTime={true} />
+      <UrlField label="Adres strony" source="websiteUrl" />
+      <ImageField label="Zdjęcie" source="imageUrl" />
     </SimpleShowLayout>
   </Show>
 );
@@ -62,21 +62,21 @@ export const OfferEdit = () => (
         name="description"
         multiline
       />
-      <ReferenceInput source="location_id" reference="location">
+      <ReferenceInput source="locationId" reference="locations">
         <SelectInput label="Lokalizacja" />
       </ReferenceInput>
       <DateTimeInput
         label="Data rozpoczęcia"
-        name="start_date"
-        source="start_date"
+        name="startDate"
+        source="startDate"
       />
       <DateTimeInput
         label="Data zakończenia"
-        name="end_date"
-        source="end_date"
+        name="endDate"
+        source="endDate"
       />
-      <TextInput label="Url strony" source="website_url" name="website_url" />
-      <TextInput label="Url zdjęcia" source="image_url" name="image_url" />
+      <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
+      <TextInput label="Url zdjęcia" source="imageUrl" name="imageUrl" />
     </SimpleForm>
   </Edit>
 );
@@ -90,21 +90,21 @@ export const OfferCreate = () => (
         name="description"
         multiline
       />
-      <ReferenceInput source="location_id" reference="location">
+      <ReferenceInput source="locationId" reference="locations">
         <SelectInput label="Lokalizacja" />
       </ReferenceInput>
       <DateTimeInput
         label="Data rozpoczęcia"
-        name="start_date"
-        source="start_date"
+        name="startDate"
+        source="startDate"
       />
       <DateTimeInput
         label="Data zakończenia"
-        name="end_date"
-        source="end_date"
+        name="endDate"
+        source="endDate"
       />
-      <TextInput label="Url strony" source="website_url" name="website_url" />
-      <TextInput label="Url zdjęcia" source="image_url" name="image_url" />
+      <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
+      <TextInput label="Url zdjęcia" source="imageUrl" name="imageUrl" />
     </SimpleForm>
   </Create>
 );

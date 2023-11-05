@@ -5,6 +5,7 @@ import {
   DeleteParams,
   DeleteResult,
   fetchUtils,
+  GetManyResult,
   GetOneParams,
   GetOneResult,
   RaRecord,
@@ -39,13 +40,24 @@ export const locationGetOne = async (
     return {
       ...info.json,
       ...details.json,
-      photos: details.json.photos.map((photo: string) => ({
+      photos: details.json?.photos?.map((photo: string) => ({
         url: photo,
       })),
     };
   });
 
   return { data: json };
+};
+
+export const locationGetMany = async (
+  httpClient: typeof fetchUtils.fetchJson,
+  apiUrl: string,
+): Promise<GetManyResult<RaRecord>> => {
+  const url = `${apiUrl}/locations/`;
+  const { json } = await httpClient(url);
+  return {
+    data: json,
+  };
 };
 
 export const locationCreate = async (
@@ -55,7 +67,7 @@ export const locationCreate = async (
 ): Promise<CreateResult<RaRecord>> => {
   const parsedData = {
     ...params.data,
-    photos: params.data.photos.map((photo: { url: string }) => photo.url),
+    photos: params.data.photos?.map((photo: { url: string }) => photo.url),
     coordinate: {
       latitude: params.data.latitude,
       longitude: params.data.longitude,
@@ -75,7 +87,7 @@ export const locationUpdate = async (
 ): Promise<UpdateResult<RaRecord>> => {
   const parsedData = {
     ...params.data,
-    photos: params.data.photos.map((photo: { url: string }) => photo.url),
+    photos: params.data.photos?.map((photo: { url: string }) => photo.url),
     coordinate: {
       latitude: params.data.latitude,
       longitude: params.data.longitude,

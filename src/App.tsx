@@ -58,7 +58,7 @@ function App() {
           options={{ label: "Ogłoszenia" }}
         />
         <Resource
-          name="location"
+          name="locations"
           list={LocationList}
           show={LocationShow}
           edit={LocationEdit}
@@ -68,7 +68,7 @@ function App() {
           recordRepresentation={(record) => record.name}
         />
         <Resource
-          name="event"
+          name="events"
           list={EventList}
           show={EventShow}
           edit={EventEdit}
@@ -77,7 +77,7 @@ function App() {
           options={{ label: "Wydarzenia" }}
         />
         <Resource
-          name="offer"
+          name="offers"
           list={OfferList}
           show={OfferShow}
           edit={OfferEdit}

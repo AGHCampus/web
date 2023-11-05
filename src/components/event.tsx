@@ -23,11 +23,11 @@ export const EventList = () => (
     <SimpleList
       primaryText={(record) => record.title}
       secondaryText={
-        <ReferenceField reference="location" source="location_id" link="show" />
+        <ReferenceField reference="locations" source="locationId" link="show" />
       }
       tertiaryText={(record) =>
-        `${new Date(record.start_date).toLocaleDateString()} - ${new Date(
-          record.end_date,
+        `${new Date(record.startDate).toLocaleDateString()} - ${new Date(
+          record.endDate,
         ).toLocaleDateString()}`
       }
       linkType="show"
@@ -44,12 +44,12 @@ export const EventShow = () => (
   <Show title={<EventTitle />}>
     <SimpleShowLayout>
       <TextField label="Nazwa" source="title" />
-      <ReferenceField reference="location" source="location_id" link="show" />
+      <ReferenceField reference="locations" source="locationId" link="show" />
       <TextField label="Opis" source="description" />
-      <DateField label="Data rozpoczęcia" source="start_date" showTime={true} />
-      <DateField label="Data zakończenia" source="end_date" showTime={true} />
-      <UrlField label="Adres strony" source="website_url" />
-      <ImageField label="Zdjęcie" source="image_url" />
+      <DateField label="Data rozpoczęcia" source="startDate" showTime={true} />
+      <DateField label="Data zakończenia" source="endDate" showTime={true} />
+      <UrlField label="Adres strony" source="websiteUrl" />
+      <ImageField label="Zdjęcie" source="imageUrl" />
     </SimpleShowLayout>
   </Show>
 );
@@ -58,7 +58,7 @@ export const EventEdit = () => (
   <Edit title={<EventTitle />}>
     <SimpleForm>
       <TextInput label="Nazwa" source="title" name="title" />
-      <ReferenceInput source="location_id" reference="location">
+      <ReferenceInput source="locationId" reference="locations">
         <SelectInput label="Lokalizacja" />
       </ReferenceInput>
       <TextInput
@@ -69,16 +69,16 @@ export const EventEdit = () => (
       />
       <DateTimeInput
         label="Data rozpoczęcia"
-        name="start_date"
-        source="start_date"
+        name="startDate"
+        source="startDate"
       />
       <DateTimeInput
         label="Data zakończenia"
-        name="end_date"
-        source="end_date"
+        name="endDate"
+        source="endDate"
       />
-      <TextInput label="Url strony" source="website_url" name="website_url" />
-      <TextInput label="Url zdjęcia" source="image_url" name="image_url" />
+      <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
+      <TextInput label="Url zdjęcia" source="imageUrl" name="imageUrl" />
     </SimpleForm>
   </Edit>
 );
@@ -87,7 +87,7 @@ export const EventCreate = () => (
   <Create>
     <SimpleForm>
       <TextInput label="Nazwa" source="title" name="title" />
-      <ReferenceInput source="location_id" reference="location">
+      <ReferenceInput source="locationId" reference="locations">
         <SelectInput label="Lokalizacja" />
       </ReferenceInput>
       <TextInput
@@ -98,16 +98,16 @@ export const EventCreate = () => (
       />
       <DateTimeInput
         label="Data rozpoczęcia"
-        name="start_date"
-        source="start_date"
+        name="startDate"
+        source="startDate"
       />
       <DateTimeInput
         label="Data zakończenia"
-        name="end_date"
-        source="end_date"
+        name="endDate"
+        source="endDate"
       />
-      <TextInput label="Url strony" source="website_url" name="website_url" />
-      <TextInput label="Url zdjęcia" source="image_url" name="image_url" />
+      <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
+      <TextInput label="Url zdjęcia" source="imageUrl" name="imageUrl" />
     </SimpleForm>
   </Create>
 );

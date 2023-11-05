@@ -1,12 +1,20 @@
 import { DataProvider, fetchUtils } from "react-admin";
 import {
-  informationCreate,
-  informationDelete,
-  informationGetList,
-  informationGetOne,
-  informationUpdate,
-} from "./informationProvider";
-import { locationCreate, locationDelete, locationGetList, locationGetOne, locationUpdate } from "./locationProvider";
+  locationCreate,
+  locationDelete,
+  locationGetList,
+  locationGetMany,
+  locationGetOne,
+  locationUpdate,
+} from "./locationProvider";
+import {
+  defaultCreate,
+  defaultDelete,
+  defaultGetList,
+  defaultGetMany,
+  defaultGetOne,
+  defaultUpdate,
+} from "./defaultProvider";
 
 const apiUrl = "http://localhost:8080";
 const httpClient = fetchUtils.fetchJson;
@@ -16,41 +24,48 @@ const AGHCampusDataProvider: DataProvider = {
   // @ts-ignore
   getList: async (resource) => {
     switch (resource) {
-      case "information":
-        return informationGetList(httpClient, apiUrl);
-      case "location":
+      case "locations":
         return locationGetList(httpClient, apiUrl);
+      default:
+        return defaultGetList(httpClient, apiUrl, resource);
     }
   },
   // @ts-ignore
   getOne: async (resource, params) => {
     switch (resource) {
-      case "information":
-        return informationGetOne(httpClient, apiUrl, params);
-      case "location":
+      case "locations":
         return locationGetOne(httpClient, apiUrl, params);
+      default:
+        return defaultGetOne(httpClient, apiUrl, resource, params);
     }
   },
   // @ts-ignore
-  getMany: async () => Promise.resolve(),
+  getMany: async (resource) => {
+    switch (resource) {
+      case "locations":
+        return locationGetMany(httpClient, apiUrl);
+      default:
+        return defaultGetMany(httpClient, apiUrl, resource);
+    }
+  },
   // @ts-ignore
   getManyReference: async () => Promise.resolve(),
   // @ts-ignore
   create: async (resource, params) => {
     switch (resource) {
-      case "information":
-        return informationCreate(httpClient, apiUrl, params);
-      case "location":
-        return locationCreate(httpClient, apiUrl, params)
+      case "locations":
+        return locationCreate(httpClient, apiUrl, params);
+      default:
+        return defaultCreate(httpClient, apiUrl, resource, params);
     }
   },
   // @ts-ignore
   update: async (resource, params) => {
     switch (resource) {
-      case "information":
-        return informationUpdate(httpClient, apiUrl, params);
-      case "location":
+      case "locations":
         return locationUpdate(httpClient, apiUrl, params);
+      default:
+        return defaultUpdate(httpClient, apiUrl, resource, params);
     }
   },
   // @ts-ignore
@@ -58,10 +73,10 @@ const AGHCampusDataProvider: DataProvider = {
   // @ts-ignore
   delete: async (resource, params) => {
     switch (resource) {
-      case "information":
-        return informationDelete(httpClient, apiUrl, params);
-      case "location":
+      case "locations":
         return locationDelete(httpClient, apiUrl, params);
+      default:
+        return defaultDelete(httpClient, apiUrl, resource, params);
     }
   },
   // @ts-ignore
