@@ -16,7 +16,7 @@ import {
   defaultUpdate,
 } from "./defaultProvider";
 
-const apiUrl = "http://localhost:8080";
+const apiUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:8080";
 const httpClient = fetchUtils.fetchJson;
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
