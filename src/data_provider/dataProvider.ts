@@ -17,7 +17,16 @@ import {
 } from "./defaultProvider";
 
 const apiUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:8080";
-const httpClient = fetchUtils.fetchJson;
+const httpClient = (url: string, options: fetchUtils.Options = {}) => {
+  options = {
+    ...options,
+    headers: new Headers({
+      Accept: 'application/json',
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    }),
+  };
+  return fetchUtils.fetchJson(url, options);
+};
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 const AGHCampusDataProvider: DataProvider = {

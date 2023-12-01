@@ -17,7 +17,7 @@ export const defaultGetList = async (
   apiUrl: string,
   resource: string,
 ): Promise<GetListResult<RaRecord>> => {
-  const url = `${apiUrl}/${resource}/`;
+  const url = `${apiUrl}/${resource}`;
   const { json } = await httpClient(url);
   return {
     data: json,
@@ -41,7 +41,7 @@ export const defaultGetMany = async (
   apiUrl: string,
   resource: string,
 ): Promise<GetManyResult<RaRecord>> => {
-  const url = `${apiUrl}/${resource}/`;
+  const url = `${apiUrl}/${resource}`;
   const { json } = await httpClient(url);
   return {
     data: json
@@ -54,7 +54,7 @@ export const defaultCreate = async (
   resource: string,
   params: CreateParams,
 ): Promise<CreateResult<RaRecord>> => {
-  const { json } = await httpClient(`${apiUrl}/${resource}/`, {
+  const { json } = await httpClient(`${apiUrl}/${resource}`, {
     method: "POST",
     body: JSON.stringify(params.data),
   });

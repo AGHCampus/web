@@ -17,7 +17,7 @@ export const locationGetList = async (
   httpClient: typeof fetchUtils.fetchJson,
   apiUrl: string,
 ): Promise<GetListResult<RaRecord>> => {
-  const url = `${apiUrl}/locations/`;
+  const url = `${apiUrl}/locations`;
   const { json } = await httpClient(url);
   return {
     data: json,
@@ -53,7 +53,7 @@ export const locationGetMany = async (
   httpClient: typeof fetchUtils.fetchJson,
   apiUrl: string,
 ): Promise<GetManyResult<RaRecord>> => {
-  const url = `${apiUrl}/locations/`;
+  const url = `${apiUrl}/locations`;
   const { json } = await httpClient(url);
   return {
     data: json,
@@ -73,7 +73,7 @@ export const locationCreate = async (
       longitude: params.data.longitude,
     },
   };
-  const { json } = await httpClient(`${apiUrl}/locations/`, {
+  const { json } = await httpClient(`${apiUrl}/locations`, {
     method: "POST",
     body: JSON.stringify(parsedData),
   });
