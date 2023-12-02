@@ -6,6 +6,7 @@ import {
   ImageField,
   List,
   NumberInput,
+  required,
   SelectInput,
   Show,
   SimpleForm,
@@ -35,7 +36,7 @@ const CATEGORIES_LIST = [
 export const LocationList = () => (
   <List title="Lokalizacje" pagination={false}>
     <SimpleList
-      primaryText={(record) => record.name}
+      primaryText={(record) => record.nameTranslations.pl}
       secondaryText={(record) => CATEGORIES[record.category]}
       linkType="show"
     />
@@ -44,20 +45,24 @@ export const LocationList = () => (
 
 const LocationTitle = () => {
   const record = useRecordContext();
-  return <span>Lokalizacja {record ? `"${record.name}"` : ""}</span>;
+  return (
+    <span>Lokalizacja {record ? `"${record.nameTranslations.pl}"` : ""}</span>
+  );
 };
 
 export const LocationShow = () => (
   <Show title={<LocationTitle />}>
     <SimpleShowLayout>
-      <TextField label="Nazwa" source="name" />
+      <TextField label="Nazwa PL" source="nameTranslations.pl" />
+      <TextField label="Nazwa EN" source="nameTranslations.en" />
       <FunctionField
         label="Kategoria"
         render={(record: { category: string }) =>
           `${CATEGORIES[record.category]}`
         }
       />
-      <TextField label="Opis" source="description" />
+      <TextField label="Opis PL" source="descriptionTranslations.pl" />
+      <TextField label="Opis EN" source="descriptionTranslations.en" />
       <TextField label="Adres" source="address" />
       <TextField label="Godziny otwarcia" source="openingHours" />
       <TextField label="Numer telefonu" source="phoneNumber" />
@@ -71,94 +76,92 @@ export const LocationShow = () => (
 
 export const LocationEdit = () => (
   <Edit title={<LocationTitle />}>
-    <SimpleForm>
-      <TextInput label="Nazwa" source="name" name="name" />
-      <SelectInput
-        label="Kategoria"
-        source="category"
-        name="category"
-        choices={CATEGORIES_LIST}
-      />
-      <TextInput
-        label="Opis"
-        source="description"
-        name="description"
-        multiline
-      />
-      <TextInput label="Adres" source="address" name="address" multiline />
-      <TextInput
-        label="Godziny otwarcia"
-        source="openingHours"
-        name="openingHours"
-      />
-      <TextInput
-        label="Numer telefonu"
-        source="phoneNumber"
-        name="phoneNumber"
-      />
-      <TextInput label="Adres strony" source="websiteUrl" name="websiteUrl" />
-      <NumberInput
-        label="Szerokość geograficzna"
-        source="coordinate.latitude"
-        name="latitude"
-      />
-      <NumberInput
-        label="Długość geograficzna"
-        source="coordinate.longitude"
-        name="longitude"
-      />
-      <ArrayInput label="Zdjęcia" name="photos" source="photos">
-        <SimpleFormIterator inline>
-          <TextInput source="url" helperText={false} />
-        </SimpleFormIterator>
-      </ArrayInput>
-    </SimpleForm>
+    <LocationForm />
   </Edit>
 );
 
 export const LocationCreate = () => (
   <Create>
-    <SimpleForm>
-      <TextInput label="Nazwa" source="name" name="name" />
-      <SelectInput
-        label="Kategoria"
-        source="category"
-        name="category"
-        choices={CATEGORIES_LIST}
-      />
-      <TextInput
-        label="Opis"
-        source="description"
-        name="description"
-        multiline
-      />
-      <TextInput label="Adres" source="address" name="address" multiline />
-      <TextInput
-        label="Godziny otwarcia"
-        source="openingHours"
-        name="openingHours"
-      />
-      <TextInput
-        label="Numer telefonu"
-        source="phoneNumber"
-        name="phoneNumber"
-      />
-      <TextInput label="Adres strony" source="websiteUrl" name="websiteUrl" />
-      <NumberInput
-        label="Szerokość geograficzna"
-        source="coordinate.latitude"
-        name="latitude"
-      />
-      <NumberInput
-        label="Długość geograficzna"
-        source="coordinate.longitude"
-        name="longitude"
-      />
-      <ArrayInput label="Zdjęcia" name="photos" source="photos">
-        <SimpleFormIterator inline>
-          <TextInput source="url" helperText={false} />
-        </SimpleFormIterator>
-      </ArrayInput>
-    </SimpleForm>
+    <LocationForm />
   </Create>
+);
+
+const LocationForm = () => (
+  <SimpleForm>
+    <TextInput
+      label="Nazwa PL"
+      source="nameTranslations.pl"
+      name="nameTranslations.pl"
+      validate={required()}
+    />
+    <TextInput
+      label="Nazwa EN"
+      source="nameTranslations.en"
+      name="nameTranslations.en"
+      validate={required()}
+    />
+    <SelectInput
+      label="Kategoria"
+      source="category"
+      name="category"
+      choices={CATEGORIES_LIST}
+      validate={required()}
+    />
+    <TextInput
+      label="Opis PL"
+      source="descriptionTranslations.pl"
+      name="descriptionTranslations.pl"
+      multiline
+      validate={required()}
+    />
+    <TextInput
+      label="Opis EN"
+      source="descriptionTranslations.en"
+      name="descriptionTranslations.en"
+      multiline
+      validate={required()}
+    />
+    <TextInput
+      label="Adres"
+      source="address"
+      name="address"
+      multiline
+      validate={required()}
+    />
+    <TextInput
+      label="Godziny otwarcia"
+      source="openingHours"
+      name="openingHours"
+      validate={required()}
+    />
+    <TextInput
+      label="Numer telefonu"
+      source="phoneNumber"
+      name="phoneNumber"
+      validate={required()}
+    />
+    <TextInput
+      label="Adres strony"
+      source="websiteUrl"
+      name="websiteUrl"
+      validate={required()}
+    />
+    <NumberInput
+      label="Szerokość geograficzna"
+      source="coordinate.latitude"
+      name="latitude"
+      validate={required()}
+    />
+    <NumberInput
+      label="Długość geograficzna"
+      source="coordinate.longitude"
+      name="longitude"
+      validate={required()}
+    />
+    <ArrayInput label="Zdjęcia" name="photos" source="photos">
+      <SimpleFormIterator inline>
+        <TextInput source="url" helperText={false} />
+      </SimpleFormIterator>
+    </ArrayInput>
+  </SimpleForm>
 );

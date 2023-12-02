@@ -65,7 +65,7 @@ function App() {
           create={LocationCreate}
           icon={CorporateFareIcon}
           options={{ label: "Lokalizacje" }}
-          recordRepresentation={(record) => record.name}
+          recordRepresentation={(record) => record.nameTranslations.pl || "AGH"}
         />
         <Resource
           name="events"

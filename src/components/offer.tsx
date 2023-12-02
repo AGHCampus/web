@@ -7,6 +7,7 @@ import {
   List,
   ReferenceField,
   ReferenceInput,
+  required,
   SelectInput,
   Show,
   SimpleForm,
@@ -21,7 +22,7 @@ import {
 export const OfferList = () => (
   <List title="Oferty">
     <SimpleList
-      primaryText={(record) => record.description}
+      primaryText={(record) => record.descriptionTranslations.pl}
       secondaryText={
         <ReferenceField reference="locations" source="locationId" link="show" />
       }
@@ -37,13 +38,16 @@ export const OfferList = () => (
 
 const OfferTitle = () => {
   const record = useRecordContext();
-  return <span>Oferta {record ? `"${record.description}"` : ""}</span>;
+  return (
+    <span>Oferta {record ? `"${record.descriptionTranslations.pl}"` : ""}</span>
+  );
 };
 
 export const OfferShow = () => (
   <Show title={<OfferTitle />}>
     <SimpleShowLayout>
-      <TextField label="Opis" source="description" />
+      <TextField label="Opis PL" source="descriptionTranslations.pl" />
+      <TextField label="Opis EN" source="descriptionTranslations.en" />
       <ReferenceField reference="locations" source="locationId" link="show" />
       <DateField label="Data rozpoczęcia" source="startDate" showTime={true} />
       <DateField label="Data zakończenia" source="endDate" showTime={true} />
@@ -55,56 +59,53 @@ export const OfferShow = () => (
 
 export const OfferEdit = () => (
   <Edit title={<OfferTitle />}>
-    <SimpleForm>
-      <TextInput
-        label="Opis"
-        source="description"
-        name="description"
-        multiline
-      />
-      <ReferenceInput source="locationId" reference="locations">
-        <SelectInput label="Lokalizacja" />
-      </ReferenceInput>
-      <DateTimeInput
-        label="Data rozpoczęcia"
-        name="startDate"
-        source="startDate"
-      />
-      <DateTimeInput
-        label="Data zakończenia"
-        name="endDate"
-        source="endDate"
-      />
-      <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
-      <TextInput label="Url zdjęcia" source="imageUrl" name="imageUrl" />
-    </SimpleForm>
+    <OfferForm />
   </Edit>
 );
 
 export const OfferCreate = () => (
   <Create>
-    <SimpleForm>
-      <TextInput
-        label="Opis"
-        source="description"
-        name="description"
-        multiline
-      />
-      <ReferenceInput source="locationId" reference="locations">
-        <SelectInput label="Lokalizacja" />
-      </ReferenceInput>
-      <DateTimeInput
-        label="Data rozpoczęcia"
-        name="startDate"
-        source="startDate"
-      />
-      <DateTimeInput
-        label="Data zakończenia"
-        name="endDate"
-        source="endDate"
-      />
-      <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
-      <TextInput label="Url zdjęcia" source="imageUrl" name="imageUrl" />
-    </SimpleForm>
+    <OfferForm />
   </Create>
+);
+
+const OfferForm = () => (
+  <SimpleForm>
+    <TextInput
+      label="Opis PL"
+      source="descriptionTranslations.pl"
+      name="descriptionTranslations.pl"
+      multiline
+      validate={required()}
+    />
+    <TextInput
+      label="Opis EN"
+      source="descriptionTranslations.en"
+      name="descriptionTranslations.en"
+      multiline
+      validate={required()}
+    />
+    <ReferenceInput source="locationId" reference="locations">
+      <SelectInput label="Lokalizacja" validate={required()} />
+    </ReferenceInput>
+    <DateTimeInput
+      label="Data rozpoczęcia"
+      name="startDate"
+      source="startDate"
+      validate={required()}
+    />
+    <DateTimeInput
+      label="Data zakończenia"
+      name="endDate"
+      source="endDate"
+      validate={required()}
+    />
+    <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
+    <TextInput
+      label="Url zdjęcia"
+      source="imageUrl"
+      name="imageUrl"
+      validate={required()}
+    />
+  </SimpleForm>
 );

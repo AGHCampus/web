@@ -33,6 +33,7 @@ export const defaultGetOne = async (
 ): Promise<GetOneResult<RaRecord>> => {
   const url = `${apiUrl}/${resource}/${params.id}`;
   const { json } = await httpClient(url);
+  console.log(json)
   return { data: json };
 };
 
