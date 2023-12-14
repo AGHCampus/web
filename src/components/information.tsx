@@ -13,7 +13,7 @@ import {
 } from "react-admin";
 
 export const InformationList = () => (
-  <List title="Ogłoszenia">
+  <List title="Ogłoszenia" pagination={false}>
     <SimpleList
       primaryText={(record) => record.titleTranslations.pl}
       linkType="show"
@@ -87,6 +87,7 @@ export const InformationCreate = () => (
         source="titleTranslations.pl"
         multiline
         validate={required()}
+        fullWidth
       />
       <TextInput
         label="Tytuł EN"
@@ -94,6 +95,7 @@ export const InformationCreate = () => (
         source="titleTranslations.en"
         multiline
         validate={required()}
+        fullWidth
       />
       <TextInput
         label="Treść PL"
@@ -101,6 +103,7 @@ export const InformationCreate = () => (
         source="contentTranslations.pl"
         multiline
         validate={required()}
+        fullWidth
       />
       <TextInput
         label="Treść EN"
@@ -108,6 +111,7 @@ export const InformationCreate = () => (
         source="contentTranslations.en"
         multiline
         validate={required()}
+        fullWidth
       />
     </SimpleForm>
   </Create>

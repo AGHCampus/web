@@ -1,4 +1,4 @@
-import { DataProvider, fetchUtils } from "react-admin";
+import { DataProvider, fetchUtils, Identifier } from "react-admin";
 import {
   locationCreate,
   locationDelete,
@@ -27,6 +27,24 @@ const httpClient = (url: string, options: fetchUtils.Options = {}) => {
   };
   return fetchUtils.fetchJson(url, options);
 };
+
+export const disableAccount = async (id: Identifier) => {
+  await httpClient(`${apiUrl}/users/${id}/disable`, {
+    method: "PUT",
+  });
+}
+
+export const enableAccount = async (id: Identifier) => {
+  await httpClient(`${apiUrl}/users/${id}/enable`, {
+    method: "PUT",
+  });
+}
+
+export const resetPassword = async (id: Identifier) => {
+  await httpClient(`${apiUrl}/users/${id}/reset-password`, {
+    method: "PUT",
+  });
+}
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 const AGHCampusDataProvider: DataProvider = {

@@ -1,5 +1,6 @@
 import {
   Admin,
+  ListGuesser,
   radiantDarkTheme,
   radiantLightTheme,
   Resource,
@@ -9,6 +10,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import EventIcon from "@mui/icons-material/Event";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import PersonIcon from "@mui/icons-material/Person";
+import GroupsIcon from "@mui/icons-material/Groups";
 import {
   InformationCreate,
   InformationEdit,
@@ -36,58 +39,79 @@ import {
   OfferList,
   OfferShow,
 } from "./components/offer";
+import { UserList } from "./components/user";
 
-function App() {
-  return (
-    <div className="App">
-      <Admin
-        dataProvider={dataProvider}
-        authProvider={authProvider}
-        i18nProvider={i18nProvider}
-        dashboard={Dashboard}
-        theme={radiantLightTheme}
-        darkTheme={radiantDarkTheme}
-      >
-        <Resource
-          name="information"
-          list={InformationList}
-          edit={InformationEdit}
-          show={InformationShow}
-          create={InformationCreate}
-          icon={InfoIcon}
-          options={{ label: "Ogłoszenia" }}
-        />
-        <Resource
-          name="locations"
-          list={LocationList}
-          show={LocationShow}
-          edit={LocationEdit}
-          create={LocationCreate}
-          icon={CorporateFareIcon}
-          options={{ label: "Lokalizacje" }}
-          recordRepresentation={(record) => record.nameTranslations.pl || "AGH"}
-        />
-        <Resource
-          name="events"
-          list={EventList}
-          show={EventShow}
-          edit={EventEdit}
-          create={EventCreate}
-          icon={EventIcon}
-          options={{ label: "Wydarzenia" }}
-        />
-        <Resource
-          name="offers"
-          list={OfferList}
-          show={OfferShow}
-          edit={OfferEdit}
-          create={OfferCreate}
-          icon={LocalOfferIcon}
-          options={{ label: "Oferty" }}
-        />
-      </Admin>
-    </div>
-  );
-}
+export const App = () => (
+  <div className="App">
+    <Admin
+      dataProvider={dataProvider}
+      authProvider={authProvider}
+      i18nProvider={i18nProvider}
+      dashboard={Dashboard}
+      theme={radiantLightTheme}
+      darkTheme={radiantDarkTheme}
+    >
+      {(permissions) => (
+        <>
+          <Resource
+            name="information"
+            list={InformationList}
+            edit={InformationEdit}
+            show={InformationShow}
+            create={InformationCreate}
+            icon={InfoIcon}
+            options={{ label: "Ogłoszenia" }}
+          />
+          <Resource
+            name="locations"
+            list={LocationList}
+            show={LocationShow}
+            edit={LocationEdit}
+            create={LocationCreate}
+            icon={CorporateFareIcon}
+            options={{ label: "Lokalizacje" }}
+            recordRepresentation={(record) =>
+              record.nameTranslations.pl || "AGH"
+            }
+          />
+          <Resource
+            name="events"
+            list={EventList}
+            show={EventShow}
+            edit={EventEdit}
+            create={EventCreate}
+            icon={EventIcon}
+            options={{ label: "Wydarzenia" }}
+          />
+          <Resource
+            name="offers"
+            list={OfferList}
+            show={OfferShow}
+            edit={OfferEdit}
+            create={OfferCreate}
+            icon={LocalOfferIcon}
+            options={{ label: "Oferty" }}
+          />
+          {permissions.roles.includes("ADMIN") ? (
+            <>
+              <Resource
+                name="users"
+                list={UserList}
+                icon={PersonIcon}
+                options={{ label: "Użytkownicy" }}
+              />
+              <Resource
+                name="roles"
+                list={ListGuesser}
+                icon={GroupsIcon}
+                options={{ label: "Role" }}
+              />
+            </>
+          ) : null}
+        </>
+      )}
+    </Admin>
+  </div>
+);
 
 export default App;

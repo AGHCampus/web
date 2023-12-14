@@ -3,7 +3,7 @@ import {
   DateField,
   DateTimeInput,
   Edit,
-  ImageField,
+  ImageField, ImageInput,
   List,
   ReferenceField,
   ReferenceInput,
@@ -16,11 +16,11 @@ import {
   TextField,
   TextInput,
   UrlField,
-  useRecordContext,
+  useRecordContext
 } from "react-admin";
 
 export const OfferList = () => (
-  <List title="Oferty">
+  <List title="Oferty" pagination={false}>
     <SimpleList
       primaryText={(record) => record.descriptionTranslations.pl}
       secondaryText={
@@ -77,6 +77,7 @@ const OfferForm = () => (
       name="descriptionTranslations.pl"
       multiline
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Opis EN"
@@ -84,8 +85,9 @@ const OfferForm = () => (
       name="descriptionTranslations.en"
       multiline
       validate={required()}
+      fullWidth
     />
-    <ReferenceInput source="locationId" reference="locations">
+    <ReferenceInput source="locationId" reference="locations"       fullWidth>
       <SelectInput label="Lokalizacja" validate={required()} />
     </ReferenceInput>
     <DateTimeInput
@@ -93,19 +95,32 @@ const OfferForm = () => (
       name="startDate"
       source="startDate"
       validate={required()}
+      fullWidth
     />
     <DateTimeInput
       label="Data zakończenia"
       name="endDate"
       source="endDate"
       validate={required()}
+      fullWidth
     />
-    <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
-    <TextInput
-      label="Url zdjęcia"
+    <TextInput label="Url strony" source="websiteUrl" name="websiteUrl"       fullWidth/>
+    <ImageInput
       source="imageUrl"
+      label="Zdjęcie"
       name="imageUrl"
       validate={required()}
+      fullWidth
     />
+    <ImageField
+      source="imageUrl"
+      label="Zdjęcie"
+    />
+    {/*<TextInput*/}
+    {/*  label="Url zdjęcia"*/}
+    {/*  source="imageUrl"*/}
+    {/*  name="imageUrl"*/}
+    {/*  validate={required()}*/}
+    {/*/>*/}
   </SimpleForm>
 );

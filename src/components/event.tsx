@@ -4,6 +4,7 @@ import {
   DateTimeInput,
   Edit,
   ImageField,
+  ImageInput,
   List,
   ReferenceField,
   ReferenceInput,
@@ -20,7 +21,7 @@ import {
 } from "react-admin";
 
 export const EventList = () => (
-  <List title="Wydarzenia">
+  <List title="Wydarzenia" pagination={false}>
     <SimpleList
       primaryText={(record) => record.titleTranslations.pl}
       secondaryText={
@@ -42,6 +43,13 @@ const EventTitle = () => {
     <span>Wydarzenie {record ? `"${record.titleTranslations.pl}"` : ""}</span>
   );
 };
+
+const PreviewImage = () => {
+  const record = useRecordContext();
+  return (
+    <ImageField record={record} source="imageUrl" />
+  );
+}
 
 export const EventShow = () => (
   <Show title={<EventTitle />}>
@@ -78,15 +86,17 @@ const EventForm = () => (
       source="titleTranslations.pl"
       name="titleTranslations.pl"
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Nazwa EN"
       source="titleTranslations.en"
       name="titleTranslations.en"
       validate={required()}
+      fullWidth
     />
     <ReferenceInput source="locationId" reference="locations">
-      <SelectInput label="Lokalizacja" validate={required()} />
+      <SelectInput label="Lokalizacja" validate={required()} fullWidth />
     </ReferenceInput>
     <TextInput
       label="Opis PL"
@@ -94,6 +104,7 @@ const EventForm = () => (
       name="descriptionTranslations.pl"
       multiline
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Opis EN"
@@ -101,25 +112,45 @@ const EventForm = () => (
       name="descriptionTranslations.en"
       multiline
       validate={required()}
+      fullWidth
     />
     <DateTimeInput
       label="Data rozpoczęcia"
       name="startDate"
       source="startDate"
       validate={required()}
+      fullWidth
     />
     <DateTimeInput
       label="Data zakończenia"
       name="endDate"
       source="endDate"
       validate={required()}
+      fullWidth
     />
-    <TextInput label="Url strony" source="websiteUrl" name="websiteUrl" />
     <TextInput
-      label="Url zdjęcia"
+      label="Url strony"
+      source="websiteUrl"
+      name="websiteUrl"
+      fullWidth
+    />
+    <ImageInput
       source="imageUrl"
+      label="Zdjęcie"
       name="imageUrl"
       validate={required()}
+      fullWidth
     />
+    <ImageField
+      source="imageUrl"
+      label="Zdjęcie"
+    />
+    {/*<TextInput*/}
+    {/*  label="Url zdjęcia"*/}
+    {/*  source="imageUrl"*/}
+    {/*  name="imageUrl"*/}
+    {/*  validate={required()}*/}
+    {/*  fullWidth*/}
+    {/*/>*/}
   </SimpleForm>
 );

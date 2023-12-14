@@ -3,7 +3,7 @@ import {
   Create,
   Edit,
   FunctionField,
-  ImageField,
+  ImageField, ImageInput,
   List,
   NumberInput,
   required,
@@ -16,7 +16,7 @@ import {
   TextField,
   TextInput,
   UrlField,
-  useRecordContext,
+  useRecordContext
 } from "react-admin";
 
 const CATEGORIES: { [key: string]: string } = {
@@ -93,12 +93,14 @@ const LocationForm = () => (
       source="nameTranslations.pl"
       name="nameTranslations.pl"
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Nazwa EN"
       source="nameTranslations.en"
       name="nameTranslations.en"
       validate={required()}
+      fullWidth
     />
     <SelectInput
       label="Kategoria"
@@ -106,6 +108,7 @@ const LocationForm = () => (
       name="category"
       choices={CATEGORIES_LIST}
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Opis PL"
@@ -113,6 +116,7 @@ const LocationForm = () => (
       name="descriptionTranslations.pl"
       multiline
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Opis EN"
@@ -120,6 +124,7 @@ const LocationForm = () => (
       name="descriptionTranslations.en"
       multiline
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Adres"
@@ -127,41 +132,56 @@ const LocationForm = () => (
       name="address"
       multiline
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Godziny otwarcia"
       source="openingHours"
       name="openingHours"
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Numer telefonu"
       source="phoneNumber"
       name="phoneNumber"
       validate={required()}
+      fullWidth
     />
     <TextInput
       label="Adres strony"
       source="websiteUrl"
       name="websiteUrl"
       validate={required()}
+      fullWidth
     />
     <NumberInput
       label="Szerokość geograficzna"
       source="coordinate.latitude"
       name="latitude"
       validate={required()}
+      fullWidth
     />
     <NumberInput
       label="Długość geograficzna"
       source="coordinate.longitude"
       name="longitude"
       validate={required()}
+      fullWidth
     />
-    <ArrayInput label="Zdjęcia" name="photos" source="photos">
-      <SimpleFormIterator inline>
-        <TextInput source="url" helperText={false} />
-      </SimpleFormIterator>
-    </ArrayInput>
+    <ImageInput
+      source="photos"
+      label="Zdjęcia"
+      name="photos"
+      validate={required()}
+      multiple
+      fullWidth
+    />
+    <ImageField label="Zdjęcia" source="photos" src="url" />
+    {/*<ArrayInput label="Zdjęcia" name="photos" source="photos">*/}
+    {/*  <SimpleFormIterator inline>*/}
+    {/*    <TextInput source="url" helperText={false} />*/}
+    {/*  </SimpleFormIterator>*/}
+    {/*</ArrayInput>*/}
   </SimpleForm>
 );
