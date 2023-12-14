@@ -1,22 +1,21 @@
 import {
-  ArrayInput,
   Create,
   Edit,
   FunctionField,
-  ImageField, ImageInput,
+  ImageField,
+  ImageInput,
   List,
   NumberInput,
   required,
   SelectInput,
   Show,
   SimpleForm,
-  SimpleFormIterator,
   SimpleList,
   SimpleShowLayout,
   TextField,
   TextInput,
   UrlField,
-  useRecordContext
+  useRecordContext,
 } from "react-admin";
 
 const CATEGORIES: { [key: string]: string } = {
@@ -34,7 +33,7 @@ const CATEGORIES_LIST = [
 ];
 
 export const LocationList = () => (
-  <List title="Lokalizacje" pagination={false}>
+  <List title="Obiekty" pagination={false}>
     <SimpleList
       primaryText={(record) => record.nameTranslations.pl}
       secondaryText={(record) => CATEGORIES[record.category]}
@@ -45,9 +44,7 @@ export const LocationList = () => (
 
 const LocationTitle = () => {
   const record = useRecordContext();
-  return (
-    <span>Lokalizacja {record ? `"${record.nameTranslations.pl}"` : ""}</span>
-  );
+  return <span>Obiekt {record ? `"${record.nameTranslations.pl}"` : ""}</span>;
 };
 
 export const LocationShow = () => (

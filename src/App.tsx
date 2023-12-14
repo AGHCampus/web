@@ -69,7 +69,7 @@ export const App = () => (
             edit={LocationEdit}
             create={LocationCreate}
             icon={CorporateFareIcon}
-            options={{ label: "Lokalizacje" }}
+            options={{ label: "Obiekty" }}
             recordRepresentation={(record) =>
               record.nameTranslations.pl || "AGH"
             }

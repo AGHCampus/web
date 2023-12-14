@@ -3,7 +3,8 @@ import {
   DateField,
   DateTimeInput,
   Edit,
-  ImageField, ImageInput,
+  ImageField,
+  ImageInput,
   List,
   ReferenceField,
   ReferenceInput,
@@ -16,7 +17,7 @@ import {
   TextField,
   TextInput,
   UrlField,
-  useRecordContext
+  useRecordContext,
 } from "react-admin";
 
 export const OfferList = () => (
@@ -87,8 +88,8 @@ const OfferForm = () => (
       validate={required()}
       fullWidth
     />
-    <ReferenceInput source="locationId" reference="locations"       fullWidth>
-      <SelectInput label="Lokalizacja" validate={required()} />
+    <ReferenceInput source="locationId" reference="locations" fullWidth>
+      <SelectInput label="Obiekt" validate={required()} />
     </ReferenceInput>
     <DateTimeInput
       label="Data rozpoczęcia"
@@ -104,7 +105,12 @@ const OfferForm = () => (
       validate={required()}
       fullWidth
     />
-    <TextInput label="Url strony" source="websiteUrl" name="websiteUrl"       fullWidth/>
+    <TextInput
+      label="Url strony"
+      source="websiteUrl"
+      name="websiteUrl"
+      fullWidth
+    />
     <ImageInput
       source="imageUrl"
       label="Zdjęcie"
@@ -112,10 +118,7 @@ const OfferForm = () => (
       validate={required()}
       fullWidth
     />
-    <ImageField
-      source="imageUrl"
-      label="Zdjęcie"
-    />
+    <ImageField source="imageUrl" label="Zdjęcie" />
     {/*<TextInput*/}
     {/*  label="Url zdjęcia"*/}
     {/*  source="imageUrl"*/}

@@ -41,14 +41,14 @@ const ResetPasswordButton = () => {
 export const UserList = () => (
   <List title="Użytkownicy" pagination={false}>
     <Datagrid bulkActionButtons={false}>
-      <TextField label="Adres e-mail" source="email" sortable={false}/>
-      <TextField label="Nazwa użytkownika" source="username" sortable={false}/>
+      <TextField label="Adres e-mail" source="email" sortable={false} />
+      <TextField label="Nazwa użytkownika" source="username" sortable={false} />
       <ArrayField label="Role" source="roles" sortable={false}>
         <SingleFieldList linkType={false}>
           <ChipField source="authority" />
         </SingleFieldList>
       </ArrayField>
-      <BooleanField label="Konto aktywne" source="enabled" sortable={false}/>
+      <BooleanField label="Konto aktywne" source="enabled" sortable={false} />
       <ChangeEnabledStatusButton />
       <ResetPasswordButton />
     </Datagrid>

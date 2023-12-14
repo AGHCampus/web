@@ -44,13 +44,6 @@ const EventTitle = () => {
   );
 };
 
-const PreviewImage = () => {
-  const record = useRecordContext();
-  return (
-    <ImageField record={record} source="imageUrl" />
-  );
-}
-
 export const EventShow = () => (
   <Show title={<EventTitle />}>
     <SimpleShowLayout>
@@ -96,7 +89,7 @@ const EventForm = () => (
       fullWidth
     />
     <ReferenceInput source="locationId" reference="locations">
-      <SelectInput label="Lokalizacja" validate={required()} fullWidth />
+      <SelectInput label="Obiekt" validate={required()} fullWidth />
     </ReferenceInput>
     <TextInput
       label="Opis PL"
@@ -141,10 +134,7 @@ const EventForm = () => (
       validate={required()}
       fullWidth
     />
-    <ImageField
-      source="imageUrl"
-      label="Zdjęcie"
-    />
+    <ImageField source="imageUrl" label="Zdjęcie" />
     {/*<TextInput*/}
     {/*  label="Url zdjęcia"*/}
     {/*  source="imageUrl"*/}

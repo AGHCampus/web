@@ -1,5 +1,6 @@
 import {
-  Create, DateField,
+  Create,
+  DateField,
   Edit,
   List,
   required,
@@ -9,7 +10,7 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
-  useRecordContext
+  useRecordContext,
 } from "react-admin";
 
 export const InformationList = () => (
