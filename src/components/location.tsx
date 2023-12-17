@@ -1,15 +1,16 @@
 import {
+  ArrayInput,
   Create,
   Edit,
   FunctionField,
   ImageField,
-  ImageInput,
   List,
   NumberInput,
   required,
   SelectInput,
   Show,
   SimpleForm,
+  SimpleFormIterator,
   SimpleList,
   SimpleShowLayout,
   TextField,
@@ -166,19 +167,10 @@ const LocationForm = () => (
       validate={required()}
       fullWidth
     />
-    <ImageInput
-      source="photos"
-      label="Zdjęcia"
-      name="photos"
-      validate={required()}
-      multiple
-      fullWidth
-    />
-    <ImageField label="Zdjęcia" source="photos" src="url" />
-    {/*<ArrayInput label="Zdjęcia" name="photos" source="photos">*/}
-    {/*  <SimpleFormIterator inline>*/}
-    {/*    <TextInput source="url" helperText={false} />*/}
-    {/*  </SimpleFormIterator>*/}
-    {/*</ArrayInput>*/}
+    <ArrayInput label="Zdjęcia" name="photos" source="photos">
+      <SimpleFormIterator inline>
+        <TextInput source="url" helperText={false} />
+      </SimpleFormIterator>
+    </ArrayInput>
   </SimpleForm>
 );

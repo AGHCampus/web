@@ -19,7 +19,6 @@ export const defaultGetList = async (
 ): Promise<GetListResult<RaRecord>> => {
   const url = `${apiUrl}/${resource}`;
   const { json } = await httpClient(url);
-  console.log(json)
   return {
     data: json,
     total: json.length,

@@ -4,7 +4,6 @@ import {
   DateTimeInput,
   Edit,
   ImageField,
-  ImageInput,
   List,
   ReferenceField,
   ReferenceInput,
@@ -127,20 +126,12 @@ const EventForm = () => (
       name="websiteUrl"
       fullWidth
     />
-    <ImageInput
+    <TextInput
+      label="Url zdjęcia"
       source="imageUrl"
-      label="Zdjęcie"
       name="imageUrl"
       validate={required()}
       fullWidth
     />
-    <ImageField source="imageUrl" label="Zdjęcie" />
-    {/*<TextInput*/}
-    {/*  label="Url zdjęcia"*/}
-    {/*  source="imageUrl"*/}
-    {/*  name="imageUrl"*/}
-    {/*  validate={required()}*/}
-    {/*  fullWidth*/}
-    {/*/>*/}
   </SimpleForm>
 );
