@@ -1,6 +1,5 @@
 import {
   Admin,
-  ListGuesser,
   radiantDarkTheme,
   radiantLightTheme,
   Resource,
@@ -40,6 +39,7 @@ import {
   OfferShow,
 } from "./components/offer";
 import { UserList } from "./components/user";
+import { RoleList } from "./components/role";
 
 export const App = () => (
   <div className="App">
@@ -102,7 +102,7 @@ export const App = () => (
               />
               <Resource
                 name="roles"
-                list={ListGuesser}
+                list={RoleList}
                 icon={GroupsIcon}
                 options={{ label: "Role" }}
               />
